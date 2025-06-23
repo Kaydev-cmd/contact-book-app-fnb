@@ -47,6 +47,11 @@
         }
         output += "</table>";
         document.getElementById("table").innerHTML = output;
+
+        const addContact = () => window.open("add-contact.html", "_self");
+        document
+          .getElementById("addContact")
+          .addEventListener("click", addContact);
       };
     </script>
   </body>

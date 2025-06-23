@@ -7,22 +7,26 @@
     <title>Add Contact</title>
   </head>
   <body>
-    <br />
-    <form id="editForm">
-      <label for="firstName">First Name:</label>
-      <input type="text" id="firstName" name="firstName" required /><br />
-      <label for="lastName">Last Name:</label>
-      <input type="text" id="lastName" name="lastName" required /><br />
-      <label for="mobile">Mobile:</label>
-      <input type="text" id="mobile" name="mobile" required /><br />
-      <label for="email">Email:</label>
-      <input type="email" id="email" name="email" required /><br />
-      <label for="avatar">Avatar:</label>
-      <input type="file" id="avatar" name="avatar" /><br />
-      <button type="submit" id="submitForm">Submit</button>
-    </form>
-    <br />
-    <button type="button" id="homeLink">Home</button>
+    <div class="container">
+      <div class="content">
+        <br />
+        <form id="editForm">
+          <label for="firstName">First Name:</label>
+          <input type="text" id="firstName" name="firstName" required /><br />
+          <label for="lastName">Last Name:</label>
+          <input type="text" id="lastName" name="lastName" required /><br />
+          <label for="mobile">Mobile:</label>
+          <input type="text" id="mobile" name="mobile" required /><br />
+          <label for="email">Email:</label>
+          <input type="email" id="email" name="email" required /><br />
+          <label for="avatar">Avatar:</label>
+          <input type="file" id="avatar" name="avatar" /><br />
+          <button type="submit" id="submitForm">Submit</button>
+        </form>
+        <br />
+        <button type="button" id="homeLink">Home</button>
+      </div>
+    </div>
 
     <script src="config.js"></script>
     <script>
@@ -32,7 +36,7 @@
         const form = new FormData(document.getElementById("editForm"));
         form.append("apiKey", apiKey);
 
-        fetch(rootPath + "controller/insert-contact", {
+        fetch(rootPath + "controller/insert-contact/", {
           method: "POST",
           headers: {
             Accept: "application/json, *.*",
@@ -43,12 +47,20 @@
           .then((data) => {
             if (data == "1") {
               alert("Contact added successfully!");
-              // Redirect to home page
+              homeLink();
             } else {
               alert("Error adding contact: " + data);
+              homeLink();
             }
           });
       };
+
+      const homeLink = () => window.open("index.html", "_self");
+
+      document
+        .getElementById("submitForm")
+        .addEventListener("click", submitForm);
+      document.getElementById("homeLink").addEventListener("click", homeLink);
     </script>
   </body>
 </html>
