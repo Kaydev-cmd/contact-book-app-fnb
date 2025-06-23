@@ -23,7 +23,7 @@
             <label for="email">Email:</label>
             <input type="email" id="email" name="email" readonly />
             <br />
-            <label for="avatarLabel">Change profile image</label>
+            <label for="avatarLabel" hidden>Change profile image</label>
             <input type="file" id="avatarLabel" name="avatarLabel" hidden />
             <br />
             <button type="submit" id="submitForm" hidden>Submit</button>
@@ -37,5 +37,15 @@
     </div>
 
     <script src="config.js"></script>
+    <script>
+      const getContactId = () => {
+        const url = window.location.href;
+        const pos = url.search("=");
+        const id = url.slice(pos + 1);
+        return id;
+      };
+
+      const contactId = getContactId();
+    </script>
   </body>
 </html>
