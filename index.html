@@ -18,6 +18,10 @@
 
     <script src="config.js"></script>
     <script>
+      document
+        .getElementById("refresh")
+        .addEventListener("click", fetchContacts);
+
       const fetchContacts = () => {
         fetch(rootPath + "controller/get-contacts/?apiKey=" + apiKey)
           .then((response) => response.json())
