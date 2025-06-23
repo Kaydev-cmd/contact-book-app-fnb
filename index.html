@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="globals.css" />
     <title>Contact Book App</title>
   </head>
-  <body onload="fetchContacts()">
+  <body>
     <div class="container">
       <div class="content">
         <div id="table">Contacts loading...</div>
@@ -19,13 +19,16 @@
     <script src="config.js"></script>
     <script>
       const fetchContacts = () => {
-        fetch(rootPath + "controller/get-contacts/")
+
+        fetch(rootPath + "controller/get-contacts/?apiKey=" + apiKey)
           .then((response) => response.json())
           .then((data) => {
             // displayOutput(data)
-            console.log(data);
-          });
+            console.log("Contacts:", data);
+          })
+          .catch((error) => console.error("Error fetching contacts:", error));
       };
+      window.onload = fetchContacts;
     </script>
   </body>
 </html>
