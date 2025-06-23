@@ -18,10 +18,6 @@
 
     <script src="config.js"></script>
     <script>
-      document
-        .getElementById("refresh")
-        .addEventListener("click", fetchContacts);
-
       const fetchContacts = () => {
         fetch(rootPath + "controller/get-contacts/?apiKey=" + apiKey)
           .then((response) => response.json())
@@ -33,8 +29,12 @@
       };
       window.onload = fetchContacts;
 
+      document
+        .getElementById("refresh")
+        .addEventListener("click", fetchContacts);
+
       const displayOutput = (data) => {
-        output = "<table>";
+        let output = "<table>";
 
         for (a in data) {
           output += `
