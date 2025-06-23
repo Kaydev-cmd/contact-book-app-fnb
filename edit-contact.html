@@ -46,6 +46,20 @@
       };
 
       const contactId = getContactId();
+
+      const getContact = () => {
+        fetch(rootPath + "controller/get-contacts/?id=" + contactId)
+          .then((response) => response.json())
+          .then((data) => {
+            // display contact info
+            console.log(data);
+          });
+      };
+
+      window.onload = getContact;
+
+      const homeLink = () => window.open("index.html", "_self");
+      document.getElementById("homeLink").addEventListener("click", homeLink);
     </script>
   </body>
 </html>
